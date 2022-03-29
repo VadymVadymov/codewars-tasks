@@ -47,3 +47,5 @@ solution a = go a Map.empty
 
   fil :: Array Int -> Boolean
   fil ar = odd $ length ar
+
+  

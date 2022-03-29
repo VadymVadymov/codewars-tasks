@@ -19,7 +19,6 @@
           pkgs.mkShell {
             buildInputs = with pkgs; [
               dhall
-              httpie
               nixpkgs-fmt
               nodejs-16_x
               purescript

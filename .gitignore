@@ -12,3 +12,7 @@
 *.code-workspace
 /.direnv/
 .envrc
+.psci
+.purs-repl
+.psc-ide-port
+.cache
