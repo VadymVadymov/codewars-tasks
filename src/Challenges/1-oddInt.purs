@@ -29,10 +29,10 @@ type Value = Array Int
 type State = Map.Map Key Value
 
 solution :: Array Int -> Int
-solution a = go a Map.empty
+solution = go Map.empty
   where
-  go :: Array Int -> State -> Int
-  go arr st = case arr of
+  go :: State -> Array Int -> Int
+  go st arr = case arr of
     [] ->
       fromMaybe 0
         $ head
@@ -43,9 +43,8 @@ solution a = go a Map.empty
       let
         i = fromMaybe 0 $ head arr
       in
-        go (drop 1 arr) $ Map.insertWith (\_ -> cons i) i (singleton i) st
+        go (Map.insertWith (\_ -> cons i) i (singleton i) st) (drop 1 arr)
 
   fil :: Array Int -> Boolean
-  fil ar = odd $ length ar
+  fil = odd <<< length
 
-  
