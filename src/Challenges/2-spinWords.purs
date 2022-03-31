@@ -28,4 +28,3 @@ spinWords str = go "" $ split (Pattern " ") str
     s -> go (acc <> " " <> s) (Array.drop 1 arr)
 
   revert = fromCharArray <<< Array.reverse <<< toCharArray
-

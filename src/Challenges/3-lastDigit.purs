@@ -66,7 +66,12 @@ lastDigit n m =
       '9' -> lastDigit "3" (show $ twoLastMod * 2)
       _ -> Nothing
   where
-  lastFromPowTo i = Just $ unsafeCharToInt $ lastD $ show $ pow i $ unsafeCharConcat (secLastD m) (lastD m)
+  lastFromPowTo i = Just
+    $ unsafeCharToInt
+    $ lastD
+    $ show
+    $ pow i
+    $ unsafeCharConcat (secLastD m) (lastD m)
   secLastD arr = fromMaybe '0' $ index (reverse $ toCharArray arr) 1
   lastD = fromMaybe '0' <<< last <<< toCharArray
   checkRemainder i = i - ((i / 4) * 4)
