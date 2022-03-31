@@ -2,7 +2,10 @@ module Helpfulthings where
 
 import Prelude
 
+import Data.Array (reverse)
 import Data.Either (Either(..))
+import Data.Formatter.Internal (foldDigits)
+import Data.String.CodeUnits (toCharArray)
 
 charToInt :: Char -> Either Char Int
 charToInt c = case c of
@@ -34,3 +37,9 @@ unsafeCharToInt = case _ of
 
 unsafeCharConcat :: Char -> Char -> Int
 unsafeCharConcat c1 c2 = unsafeCharToInt c1 * 10 + unsafeCharToInt c2
+
+arrCharToInt :: Array Char -> Array Int
+arrCharToInt = map unsafeCharToInt
+
+intSwap :: Int -> Int
+intSwap = foldDigits <<< arrCharToInt <<< reverse <<< toCharArray <<< show
