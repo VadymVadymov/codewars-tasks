@@ -2,9 +2,10 @@ module Helpfulthings where
 
 import Prelude
 
-import Data.Array (reverse)
+import Data.Array (concat, fold, reverse, take)
 import Data.Either (Either(..))
 import Data.Formatter.Internal (foldDigits)
+import Data.String (Pattern(..), split)
 import Data.String.CodeUnits (toCharArray)
 
 charToInt :: Char -> Either Char Int
@@ -43,3 +44,24 @@ arrCharToInt = map unsafeCharToInt
 
 intSwap :: Int -> Int
 intSwap = foldDigits <<< arrCharToInt <<< reverse <<< toCharArray <<< show
+
+takeDigits :: Int -> Int -> Int
+takeDigits i = show >>> toCharArray >>> take i >>> arrCharToInt >>> foldDigits
+
+toArrDigits :: Int -> Array Int
+toArrDigits = show >>> toCharArray >>> arrCharToInt
+
+splitAndCut :: Int -> Array Int -> Array (Array Int)
+splitAndCut i arr =
+  let
+    strArr = split ((show >>> Pattern) i) ((map show >>> fold) arr)
+  in
+    toCharArray >>> arrCharToInt <$> strArr
+
+remFromArray :: Array Int -> Array Int -> Array Int
+remFromArray pat arr =
+  let
+    strArr =
+      split ((foldDigits >>> show >>> Pattern) pat) ((map show >>> fold) arr)
+  in
+    concat $ map (toCharArray >>> arrCharToInt) strArr
