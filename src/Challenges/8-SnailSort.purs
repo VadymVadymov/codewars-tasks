@@ -2,7 +2,7 @@ module SnailSort where
 
 import Prelude
 
-import Data.Array (all, drop, dropEnd, length, modifyAt, reverse, take, takeEnd)
+import Data.Array (all, drop, dropEnd, length, modifyAt, null, reverse, take, takeEnd)
 import Data.Either (Either(..))
 import Data.Maybe (maybe)
 
@@ -38,7 +38,10 @@ snail a =
     let
       l = length arr
     in
-      if all (length >>> eq l) arr then true else false
+      if
+        (arr # all (length >>> eq l))
+          || (arr # join >>> null) then true
+      else false
 
   go :: Array (Array Int) -> Array Int -> Array Int
   go arr acc = case length arr of
