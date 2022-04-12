@@ -34,6 +34,7 @@ unsafeCharToInt = case _ of
   '8' -> 8
   '9' -> 9
   '0' -> 0
+  '-' -> 0
   _ -> 42
 
 unsafeCharConcat :: Char -> Char -> Int
