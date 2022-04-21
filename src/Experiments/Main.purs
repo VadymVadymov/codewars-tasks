@@ -13,13 +13,9 @@ main = Aff.launchAff_ $ go 1000
   where
   go = case _ of
     i | i < 0 -> liftEffect $ Console.log $
-      withGraphics style "I'm dead inside"
+      withGraphics (underline <> bold) "I'm dead inside"
     i -> do
       Console.log $ withGraphics (italic <> bold)
-        ( show i
-            <> " - 7 = "
-            <> show (i - 7)
-        )
-      Aff.delay $ Aff.Milliseconds 25.0
+        (show i <> " - 7 = " <> show (i - 7))
+      Aff.delay $ Aff.Milliseconds 1000.0
       go (i - 7)
-  style = underline <> bold

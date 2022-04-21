@@ -1,11 +1,11 @@
 module Experiments.Terminal where
 
-import Ansi.Output
 import Prelude
 
 import Ansi.Codes (Color(..))
 import Effect (Effect)
 import Effect.Class.Console as Console
+import Ansi.Output (background, bold, foreground, underline, withGraphics)
 
 -- Some experiments with `Ansi` terminal features
 
