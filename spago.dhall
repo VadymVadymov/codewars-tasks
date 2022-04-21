@@ -13,18 +13,23 @@ to generate this file without the comments in this block.
 { name = "my-project"
 , dependencies =
   [ "aff"
+  , "ansi"
   , "arrays"
   , "console"
+  , "control"
   , "effect"
   , "either"
   , "formatters"
   , "halogen-subscriptions"
   , "integers"
+  , "lists"
   , "maybe"
+  , "newtype"
   , "ordered-collections"
   , "prelude"
   , "strings"
   , "tuples"
+  , "unicode"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
