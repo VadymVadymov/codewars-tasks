@@ -4,8 +4,8 @@ import Prelude
 
 import Data.Array as Array
 import Data.String as String
-import Effect (Effect)
 import Effect.Console as Console
+import Effect (Effect)
 
 {-
 
@@ -33,18 +33,19 @@ fizzBuzz = go 1
 type Cfg = Array { num :: Int, word :: String }
 
 fizzBuzzCfg :: Effect Unit
-fizzBuzzCfg = go 1 cfg
+fizzBuzzCfg = go cfg 1
   where
-  go i arr =
+  go arr i = do
     let
-      output = Array.fold $ arr
-        <#> (\{ num, word } -> if mod i num == 0 then word else mempty)
-      print v =
-        if i <= 100 then Console.log v >>= \_ -> go (i + 1) arr else pure unit
-    in
-      if String.null output then print $ show i else print output
+      output = Array.fold $
+        arr <#> (\{ num, word } -> if mod i num == 0 then word else mempty)
+      print v = when (i <= 100) do
+        Console.log v
+        go arr $ i + 1
+    if String.null output then print $ show i else print output
   cfg =
     [ { num: 3, word: "Fizz" }
     , { num: 5, word: "Buzz" }
+    , { num: 7, word: "Kekw" }
     , { num: 10, word: "Bruh" }
     ]
